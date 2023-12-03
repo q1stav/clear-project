@@ -1,5 +1,7 @@
 import {Menu} from './core/menu'
 import { TimerModule } from './modules/timer.module'
+import { ClicksModule } from './modules/clicks.module'
+
 const menu = document.querySelector('.menu')
 export class ContextMenu extends Menu {
     open() {
@@ -33,11 +35,14 @@ export class ContextMenu extends Menu {
     }
 
     add() {
+        const module2=new ClicksModule('2','Подсчет кликов')
         const module3=new TimerModule('3','Таймер')
-
+        
+        menu.innerHTML+=module2.toHTML()
         menu.innerHTML+=module3.toHTML()
-
-        module3.trigger()
       
+        module2.trigger()
+        module3.trigger()
+
     }
 }
