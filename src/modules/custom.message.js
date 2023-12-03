@@ -21,9 +21,6 @@ export class RandomText extends Module {
 			}
 			console.log(text)
 		})
-		throw new Error(
-			`Trigger method should be implemented in module "${this.type}"`
-		)
 	}
 
 	toHTML() {

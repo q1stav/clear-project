@@ -40,24 +40,17 @@ export class ContextMenu extends Menu {
         const module2=new ClicksModule('2','Подсчет кликов')
         const module3=new TimerModule('3','Таймер')
         const module5 = new RandomText('5', 'Кастомное сообщение')
-
-        
-        menu.innerHTML+=module2.toHTML()
-        menu.innerHTML+=module3.toHTML()
-        menu.innerHTML += module5.toHTML()
-      
-        module2.trigger()
-        module3.trigger()
-        module5.trigger()
-
         const calcModule = new CalcModule('converterModule', 'Currency converter')
         
         menu.innerHTML+=module2.toHTML()
         menu.innerHTML+=module3.toHTML()
+        menu.innerHTML+=module5.toHTML()
         menu.innerHTML+=calcModule.toHTML()
-      
+
         module2.trigger()
         module3.trigger()
+        module5.trigger()
         calcModule.trigger()
+        
     }
 }
