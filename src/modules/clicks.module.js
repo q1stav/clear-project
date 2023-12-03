@@ -1,33 +1,32 @@
 import {Module} from '../core/module'
+import CheckOpenMenu from '../checkOpenMenu'
 
 
 export class ClicksModule extends Module {
     constructor(type,text){
         super(type,text)
     }
-    trigger(){
 
-        let count = 0
-        let time = 3
-        let timeInterval
-        const counterHTML=document.createElement('div')
-        counterHTML.className='counter'
-        
-        const timer = document.createElement('div')
-        timer.className='timer'
+    trigger(){
         const list = document.querySelector(`li[data-type='${this.type}']`)
-        list.addEventListener('click', event)
-                  
-        function event(){
+
+        function countClicks() {
+            let count = 0
+            let time = 3
+            let timeInterval
+            const counterHTML=document.createElement('div')
+            counterHTML.className='counter'
+            
+            const timer = document.createElement('div')
+            timer.className='timer'
+            // list.addEventListener('click', event)
             document.body.append(timer)
             document.body.append(counterHTML)
-            decreaceTime()
-            timeInterval = setInterval(decreaceTime,1000)
-                
-                function decreaceTime(){
-                    timer.innerText = `${time}`
+
+            function decreaceTime(){
+                timer.innerText = `${time}`
                 time--
-                
+            
                 if(time < 0) {
                     document.body.removeEventListener('click', increaseCount)
                     timeInterval = clearInterval(timeInterval)
@@ -37,30 +36,27 @@ export class ClicksModule extends Module {
                     time = 3
                     timer.innerText=`Время:${time} сек.`
                 }
-            }            
+            } 
+
+            decreaceTime()
+            timeInterval = setInterval(decreaceTime,1000)
+
             document.body.addEventListener('click', increaseCount)
+
+            function increaseCount() {
+                count++
+                counterHTML.textContent=count
+            }
         }
-    function increaseCount()
-        {
-        count++
-        counterHTML.textContent=count
-        console.log(count)
-        }
-    }
-}
         
-function TimerForClicks(){
-    const timerBlock=document.createElement('div') // создание блока под таймер
-    timerBlock.className='timer'
-        const seconds=document.createElement('span') //секунды
-        seconds.className='half'
-        seconds.textContent=`00`
-        const interval=document.createElement('span') //секунды
-        interval.className='half'
-        interval.textContent=':'
-        const miliSeconds=document.createElement('span') //милиceкунды
-        miliSeconds.className='half'
-        miliSeconds.textContent='00'
-        timerBlock.append(seconds,interval,miliSeconds)
-    return timerBlock
+        list.addEventListener('click', () => {
+            if (!document.querySelector('.timer')) {
+                CheckOpenMenu()
+                
+                countClicks()
+            } else {
+                document.body.removeChild(document.querySelector('.timer'))
+            }
+        })
+    }
 }
