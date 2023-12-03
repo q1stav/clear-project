@@ -1,4 +1,5 @@
 import {Menu} from './core/menu'
+import { ClicksModule } from './modules/clicks.module'
 const menu = document.querySelector('.menu')
 export class ContextMenu extends Menu {
     open() {
@@ -32,6 +33,10 @@ export class ContextMenu extends Menu {
     }
 
     add() {
-      
+        const module2=new ClicksModule('2','Подсчет кликов')
+
+        menu.innerHTML+=module2.toHTML()
+
+        module2.trigger()
     }
 }

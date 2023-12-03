@@ -1,4 +1,6 @@
 import './styles.css'
+import './clicksModule.css'
+import { ContextMenu } from './menu'
 
 const contextMenu = new ContextMenu()
 contextMenu.open()
