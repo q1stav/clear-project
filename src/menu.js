@@ -2,6 +2,7 @@ import {Menu} from './core/menu'
 import { TimerModule } from './modules/timer.module'
 import { ClicksModule } from './modules/clicks.module'
 import { RandomText } from './modules/custom.message'
+import { CalcModule } from './modules/calc.module'
 
 const menu = document.querySelector('.menu')
 export class ContextMenu extends Menu {
@@ -49,5 +50,14 @@ export class ContextMenu extends Menu {
         module3.trigger()
         module5.trigger()
 
+        const calcModule = new CalcModule('converterModule', 'Currency converter')
+        
+        menu.innerHTML+=module2.toHTML()
+        menu.innerHTML+=module3.toHTML()
+        menu.innerHTML+=calcModule.toHTML()
+      
+        module2.trigger()
+        module3.trigger()
+        calcModule.trigger()
     }
 }

@@ -1,6 +1,7 @@
 import './styles.css'
 import './TimerModule.css'
 import './clicksModule.css'
+import './styles-for-calc.css'
 import { ContextMenu } from './menu'
 
 
