@@ -1,4 +1,5 @@
 import {Module} from '../core/module'
+import CheckOpenMenu from '../checkOpenMenu'
 
 export class CalcModule extends Module {
     trigger() {
@@ -199,9 +200,7 @@ export class CalcModule extends Module {
 
         menuPoint.addEventListener('click', () => {
             if (!document.querySelector('.calcDiv')) {
-                if (document.querySelector('.clicksDiv')) {
-                    document.body.removeChild(document.querySelector('.clicksDiv'))
-                }
+                CheckOpenMenu()
                 
                 calcButtons()
             } else {

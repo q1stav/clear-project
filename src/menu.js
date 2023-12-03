@@ -1,4 +1,5 @@
 import {Menu} from './core/menu'
+import { BackgroundModule } from './modules/background.module'
 import { TimerModule } from './modules/timer.module'
 import { ClicksModule } from './modules/clicks.module'
 import { RandomText } from './modules/custom.message'
@@ -37,16 +38,19 @@ export class ContextMenu extends Menu {
     }
 
     add() {
+        const module1=new BackgroundModule('1','Сменить цвет фона')
         const module2=new ClicksModule('2','Подсчет кликов')
         const module3=new TimerModule('3','Таймер')
         const module5 = new RandomText('5', 'Кастомное сообщение')
-        const calcModule = new CalcModule('converterModule', 'Currency converter')
+        const calcModule = new CalcModule('converterModule', 'Калькулятор')
         
+        menu.innerHTML+=module1.toHTML()
         menu.innerHTML+=module2.toHTML()
         menu.innerHTML+=module3.toHTML()
         menu.innerHTML+=module5.toHTML()
         menu.innerHTML+=calcModule.toHTML()
 
+        module1.trigger()
         module2.trigger()
         module3.trigger()
         module5.trigger()
