@@ -1,5 +1,5 @@
 import {Module} from '../core/module'
-import CheckOpenMenu from '../checkOpenMenu'
+// import CheckOpenMenu from '../checkOpenMenu'
 
 
 export class ClicksModule extends Module {
@@ -9,15 +9,17 @@ export class ClicksModule extends Module {
 
     trigger(){
         const list = document.querySelector(`li[data-type='${this.type}']`)
+        const timer = document.createElement('div')
+        const counterHTML=document.createElement('div')
 
         function countClicks() {
             let count = 0
             let time = 3
             let timeInterval
-            const counterHTML=document.createElement('div')
+            
             counterHTML.className='counter'
             
-            const timer = document.createElement('div')
+            
             timer.className='timer'
             // list.addEventListener('click', event)
             document.body.append(timer)
@@ -48,15 +50,24 @@ export class ClicksModule extends Module {
                 counterHTML.textContent=count
             }
         }
-        
-        list.addEventListener('click', () => {
-            if (!document.querySelector('.timer')) {
-                CheckOpenMenu()
-                
-                countClicks()
-            } else {
-                document.body.removeChild(document.querySelector('.timer'))
+        const menuList = document.querySelector('ul')
+        menuList.addEventListener('click', (event) => {
+            if(event.target === list){
+                if (!document.querySelector('.timer')) {
+                    // CheckOpenMenu()
+                    
+                    countClicks()
+                } else {
+                    document.body.removeChild(document.querySelector('.timer'))
+                }
             }
+            else{
+                // document.body.removeChild(document.querySelector('.timer'))
+                // document.body.removeChild(document.querySelector('.counter'))
+                timer.remove()
+                counterHTML.remove()
+            }
+           
         })
     }
 }

@@ -1,6 +1,6 @@
 import { RandomQuote } from '../core/random.quote'
 import { Module } from '../core/module'
-import CheckOpenMenu from '../checkOpenMenu'
+// import CheckOpenMenu from '../checkOpenMenu'
 
 export class RandomText extends Module {
 	constructor(type, text) {
@@ -9,24 +9,21 @@ export class RandomText extends Module {
 	}
 
 	trigger() {
+		const menuList = document.querySelector('ul')
 		const item = document.querySelector(`li[data-type = '${this.type}']`)
-
-		item.addEventListener('click', (event) => {
-			if (!document.querySelector('.module__custom-message')) {
-				CheckOpenMenu()
-
-				const text = document.querySelector('.module__custom-message')
-				
-				const { target } = event
-				if (target) {
+		
+		menuList.addEventListener('click', (event) => {
+			const text = document.querySelector('.module__custom-message')
+				if(event.target === item){
 					this.randomText.getRandomQuote()
 					if (text) {
 						text.remove()
 					}
 				}
-			} else {
-				document.body.removeChild(document.querySelector('.module__custom-message'))
-			}
+				else{
+					text.remove()
+				}
+
 		})
 		
 	}

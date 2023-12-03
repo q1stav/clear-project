@@ -1,10 +1,10 @@
 import {Module} from '../core/module'
-import CheckOpenMenu from '../checkOpenMenu'
+// import CheckOpenMenu from '../checkOpenMenu'
 
 export class CalcModule extends Module {
     trigger() {
         const menuPoint = document.querySelector(`.menu-item[data-type="${this.type}"]`)
-
+        
         function calcButtons() {
 
             const calcDiv = document.createElement('div')
@@ -198,14 +198,26 @@ export class CalcModule extends Module {
             
         }
 
-        menuPoint.addEventListener('click', () => {
-            if (!document.querySelector('.calcDiv')) {
-                CheckOpenMenu()
-                
-                calcButtons()
-            } else {
-                document.body.removeChild(document.querySelector('.calcDiv'))
+        const menuList = document.querySelector('ul')
+
+        menuList.addEventListener('click', (event) => {
+            if(event.target === menuPoint){
+                if (!document.querySelector('.calcDiv')) {
+                    // CheckOpenMenu()
+                    
+                    calcButtons()
+                } else {
+                    document.body.removeChild(document.querySelector('.calcDiv'))
+                }
             }
+            else{
+                if(document.querySelector('.calcDiv')){
+                    document.body.removeChild(document.querySelector('.calcDiv'))
+                }
+                
+            
+            }
+            
         }) 
     }
 }
