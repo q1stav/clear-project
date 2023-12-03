@@ -1,4 +1,5 @@
 import {Menu} from './core/menu'
+import { TimerModule } from './modules/timer.module'
 const menu = document.querySelector('.menu')
 export class ContextMenu extends Menu {
     open() {
@@ -32,6 +33,11 @@ export class ContextMenu extends Menu {
     }
 
     add() {
+        const module3=new TimerModule('3','Таймер')
+
+        menu.innerHTML+=module3.toHTML()
+
+        module3.trigger()
       
     }
 }

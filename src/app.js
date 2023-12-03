@@ -1,4 +1,6 @@
 import './styles.css'
+import './TimerModule.css'
+
 
 const contextMenu = new ContextMenu()
 contextMenu.open()
