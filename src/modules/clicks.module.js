@@ -12,7 +12,7 @@ export class ClicksModule extends Module {
         let timeInterval
         const counterHTML=document.createElement('div')
         counterHTML.className='counter'
-        document.body.append(counterHTML)
+        
         const timer = document.createElement('div')
         timer.className='timer'
         const list = document.querySelector(`li[data-type='${this.type}']`)
@@ -20,6 +20,7 @@ export class ClicksModule extends Module {
                   
         function event(){
             document.body.append(timer)
+            document.body.append(counterHTML)
             decreaceTime()
             timeInterval = setInterval(decreaceTime,1000)
                 
