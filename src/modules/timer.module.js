@@ -7,6 +7,8 @@ export class TimerModule extends Module {
     trigger(){
         let count = 0
         let timeInterval
+        const timerContainer = document.createElement('div')
+        timerContainer.className = 'timer-container'
         const timer = document.createElement('div')
         timer.className='timerModule'
         const h1HTML = document.createElement('h1')
@@ -19,7 +21,8 @@ export class TimerModule extends Module {
         list.addEventListener('click', event)
         function event(){
             let time = prompt('Задайте время в секундах')
-            document.body.append(h1HTML,timer)
+            document.body.append(timerContainer)
+            timerContainer.append(h1HTML, timer)
             decreaceTime()
             timeInterval = setInterval(decreaceTime,1000)
                                 
@@ -33,7 +36,7 @@ export class TimerModule extends Module {
                             const messageEnd=document.createElement('div')
                             messageEnd.className='messageEnd'
                             messageEnd.textContent='Таймер завершен'
-                            document.body.append(messageEnd)
+                            timerContainer.append(messageEnd)
                         }
                 }
         }
